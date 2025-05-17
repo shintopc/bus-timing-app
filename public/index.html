@@ -8,6 +8,36 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="/styles/main.css">
     <link rel="manifest" href="/manifest.json">
+    
+    <!-- Firebase SDKs (modern module version) -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.7.3/firebase-app.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/11.7.3/firebase-firestore.js";
+
+        // Your Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCRa1qLfVfRvxl2KOvNpocNj7Z2xnuDt9Q",
+            authDomain: "bustimingsapp.firebaseapp.com",
+            projectId: "bustimingsapp",
+            storageBucket: "bustimingsapp.firebasestorage.app",
+            messagingSenderId: "201532782611",
+            appId: "1:201532782611:web:a57dc47f2613c4afdfa7e6"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        
+        // Make db available globally (for traditional scripts)
+        window.firebaseDb = db;
+    </script>
+    
+    <!-- Fallback for browsers that don't support modules -->
+    <script nomodule>
+        document.addEventListener('DOMContentLoaded', function() {
+            alert("Your browser doesn't support modern JavaScript features. Please update your browser.");
+        });
+    </script>
 </head>
 <body>
     <div class="app-container">
@@ -16,12 +46,12 @@
             <p>Find real-time bus schedules across Ernakulam district</p>
         </header>
         
+        <!-- Search Interface -->
         <div class="search-container">
             <div class="input-group">
                 <label for="fromLocation"><i class="fas fa-map-marker-alt"></i> From</label>
                 <select id="fromLocation">
                     <option value="">Select departure point</option>
-                    <!-- Options will be populated by JavaScript -->
                 </select>
             </div>
             
@@ -29,7 +59,6 @@
                 <label for="toLocation"><i class="fas fa-map-marker-alt"></i> To</label>
                 <select id="toLocation">
                     <option value="">Select destination</option>
-                    <!-- Options will be populated by JavaScript -->
                 </select>
             </div>
             
@@ -43,6 +72,7 @@
             </div>
         </div>
         
+        <!-- Results Section -->
         <div class="results-container">
             <div class="results-header">
                 <h2>Available Buses</h2>
@@ -55,7 +85,6 @@
             </div>
             
             <div id="busResults" class="bus-results">
-                <!-- Bus cards will be inserted here by JavaScript -->
                 <div class="loading-spinner">
                     <i class="fas fa-spinner fa-spin"></i>
                     <p>Loading bus data...</p>
@@ -63,11 +92,10 @@
             </div>
         </div>
         
+        <!-- Recent Searches -->
         <div class="recent-searches">
             <h3><i class="fas fa-history"></i> Recent Searches</h3>
-            <div id="recentSearchesList">
-                <!-- Recent searches will appear here -->
-            </div>
+            <div id="recentSearchesList"></div>
         </div>
         
         <footer class="app-footer">
@@ -77,27 +105,37 @@
         </footer>
     </div>
 
-    <!-- Firebase SDKs -->
-    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
+    <!-- Traditional Script Implementation -->
+    <script>
+        // This will use the db instance created by the module
+        document.addEventListener('DOMContentLoaded', async function() {
+            // Initialize UI components
+            const fromSelect = document.getElementById('fromLocation');
+            const toSelect = document.getElementById('toLocation');
+            
+            // Load locations from Firestore
+            try {
+                const querySnapshot = await getDocs(collection(window.firebaseDb, "locations"));
+                querySnapshot.forEach((doc) => {
+                    const option = document.createElement('option');
+                    option.value = doc.id;
+                    option.textContent = doc.data().name;
+                    fromSelect.appendChild(option.cloneNode(true));
+                    toSelect.appendChild(option);
+                });
+            } catch (error) {
+                console.error("Error loading locations:", error);
+            }
+            
+            // Rest of your traditional script logic...
+        });
+    </script>
     
-    <!-- App Configuration -->
-    <script src="/scripts/firebase-config.js"></script>
-    
-    <!-- Main App Logic -->
-    <script src="/scripts/app.js"></script>
-    
-    <!-- PWA Service Worker Registration -->
+    <!-- PWA Service Worker -->
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
-                    .then(registration => {
-                        console.log('ServiceWorker registration successful');
-                    })
-                    .catch(err => {
-                        console.log('ServiceWorker registration failed: ', err);
-                    });
+                navigator.serviceWorker.register('/sw.js');
             });
         }
     </script>
