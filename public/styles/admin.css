@@ -1,0 +1,190 @@
+/* ===== Admin Container ===== */
+.admin-container {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  background: var(--white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-md);
+}
+
+/* ===== Admin Tabs ===== */
+.admin-tabs {
+  display: flex;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--gray);
+}
+
+.admin-tab {
+  padding: 10px 20px;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: var(--transition);
+}
+
+.admin-tab.active {
+  border-bottom-color: var(--primary);
+  font-weight: 500;
+  color: var(--primary);
+}
+
+/* ===== Form Styles ===== */
+.tab-content {
+  display: none;
+  padding: 20px 0;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.form-row {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.form-row .input-group {
+  flex: 1;
+}
+
+.timing-inputs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.timing-input {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.timing-input input {
+  width: 120px;
+  padding: 8px;
+}
+
+.remove-timing {
+  background: none;
+  border: none;
+  color: var(--danger);
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.form-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* ===== List Containers ===== */
+.list-container {
+  margin-top: 30px;
+  border: 1px solid var(--gray);
+  border-radius: var(--border-radius);
+  padding: 15px;
+}
+
+.item-list {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  border-bottom: 1px solid var(--gray);
+}
+
+.list-item:last-child {
+  border-bottom: none;
+}
+
+.item-info h4 {
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+
+.item-info p {
+  font-size: 0.9rem;
+  color: var(--dark-gray);
+}
+
+.item-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.edit-btn, .delete-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 5px;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.edit-btn {
+  color: var(--primary);
+  border: 1px solid var(--primary);
+}
+
+.edit-btn:hover {
+  background: var(--primary);
+  color: var(--white);
+}
+
+.delete-btn {
+  color: var(--danger);
+  border: 1px solid var(--danger);
+}
+
+.delete-btn:hover {
+  background: var(--danger);
+  color: var(--white);
+}
+
+/* ===== Error Messages ===== */
+.error-message {
+  padding: 20px;
+  text-align: center;
+  color: var(--danger);
+  border: 1px solid var(--danger);
+  border-radius: var(--border-radius);
+  margin: 20px 0;
+}
+
+.error-message i {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  display: block;
+}
+
+/* ===== Responsive Admin Styles ===== */
+@media (max-width: 768px) {
+  .form-row {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .list-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .item-actions {
+    align-self: flex-end;
+  }
+}
