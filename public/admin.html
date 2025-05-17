@@ -1,1 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Timings Admin Panel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/styles/main.css">
+    <style>
+        /* Admin-specific styles */
+        .admin-container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .admin-tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .admin-tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .admin-tab.active {
+            border-bottom-color: #3a7bd5;
+            font-weight: 500;
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 20px 0;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .timing-inputs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .timing-input {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .list-container {
+            margin-top: 30px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            padding: 15px;
+        }
+        
+        .item-list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1><i class="fas fa-bus"></i> Bus Timings Admin Panel</h1>
+            <p>Manage bus routes and locations</p>
+        </header>
+        
+        <div class="admin-container">
+            <div class="admin-tabs">
+                <div class="admin-tab active" data-tab="buses">Manage Buses</div>
+                <div class="admin-tab" data-tab="places">Manage Locations</div>
+            </div>
+            
+            <!-- Buses Tab -->
+            <div id="buses-tab" class="tab-content active">
+                <form id="bus-form">
+                    <input type="hidden" id="edit-bus-id">
+                    
+                    <div class="form-row">
+                        <div class="input-group">
+                            <label for="bus-id">Bus ID</label>
+                            <input type="text" id="bus-id" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="bus-name">Bus Name</label>
+                            <input type="text" id="bus-name" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="input-group">
+                            <label for="from-location">From</label>
+                            <select id="from-location" required></select>
+                        </div>
+                        <div class="input-group">
+                            <label for="to-location">To</label>
+                            <select id="to-location" required></select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="input-group">
+                            <label for="bus-type">Bus Type</label>
+                            <select id="bus-type" required>
+                                <option value="">Select type</option>
+                                <option value="Ordinary">Ordinary</option>
+                                <option value="Express">Express</option>
+                                <option value="Superfast">Superfast</option>
+                                <option value="AC">AC</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="operator">Operator</label>
+                            <select id="operator" required>
+                                <option value="">Select operator</option>
+                                <option value="KSRTC">KSRTC</option>
+                                <option value="Private">Private</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="frequency">Frequency</label>
+                        <input type="text" id="frequency" placeholder="Every 30 minutes">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Timings</label>
+                        <div id="timing-inputs" class="timing-inputs">
+                            <!-- Timing inputs will be added here -->
+                        </div>
+                        <button type="button" id="add-timing" class="secondary-btn">
+                            <i class="fas fa-plus"></i> Add Timing
+                        </button>
+                    </div>
+                    
+                    <div class="form-buttons">
+                        <button type="submit" class="primary-btn">
+                            <i class="fas fa-save"></i> Save Bus
+                        </button>
+                        <button type="button" id="cancel-edit" class="secondary-btn" style="display:none;">
+                            Cancel Edit
+                        </button>
+                    </div>
+                </form>
+                
+                <div class="list-container">
+                    <h3><i class="fas fa-bus"></i> Existing Buses</h3>
+                    <div id="bus-list" class="item-list">
+                        <!-- Bus list will be populated here -->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Locations Tab -->
+            <div id="places-tab" class="tab-content">
+                <form id="location-form">
+                    <div class="form-row">
+                        <div class="input-group">
+                            <label for="location-name">Location Name</label>
+                            <input type="text" id="location-name" required>
+                        </div>
+                        <button type="submit" class="primary-btn">
+                            <i class="fas fa-plus"></i> Add Location
+                        </button>
+                    </div>
+                </form>
+                
+                <div class="list-container">
+                    <h3><i class="fas fa-map-marker-alt"></i> Existing Locations</h3>
+                    <div id="location-list" class="item-list">
+                        <!-- Location list will be populated here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <!-- Firebase SDKs -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.7.3/firebase-app.js";
+        import { 
+            getFirestore, 
+            collection, 
+            doc, 
+            setDoc, 
+            getDocs, 
+            deleteDoc,
+            onSnapshot 
+        } from "https://www.gstatic.com/firebasejs/11.7.3/firebase-firestore.js";
+
+        // Your Firebase config
+        const firebaseConfig = {
+            apiKey: "AIzaSyCRa1qLfVfRvxl2KOvNpocNj7Z2xnuDt9Q",
+            authDomain: "bustimingsapp.firebaseapp.com",
+            projectId: "bustimingsapp",
+            storageBucket: "bustimingsapp.firebasestorage.app",
+            messagingSenderId: "201532782611",
+            appId: "1:201532782611:web:a57dc47f2613c4afdfa7e6"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        
+        // Make available to traditional scripts
+        window.firebaseDb = db;
+        window.firebaseMethods = {
+            collection, doc, setDoc, getDocs, deleteDoc, onSnapshot
+        };
+    </script>
+    
+    <!-- Admin JavaScript -->
+    <script src="/scripts/admin.js"></script>
+    
+    <!-- Fallback for non-module browsers -->
+    <script nomodule>
+        document.getElementById('buses-tab').innerHTML = `
+            <div class="error-message">
+                <i class="fas fa-exclamation-triangle"></i>
+                <p>Your browser doesn't support modern features required for the admin panel.</p>
+                <p>Please use Chrome, Firefox, Edge, or Safari (latest versions).</p>
+            </div>
+        `;
+    </script>
+</body>
+</html>
