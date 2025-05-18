@@ -24,11 +24,6 @@ Visit: *https://bus-timing-app.vercel.app/*
 - Firebase Firestore (Database)
 - Vercel (Hosting)
 
-## 🔐 Firebase Config
-
-
-
-> **Note:** You can update this config in `firebase-config.js`.
 
 ## 📁 Folder Structure
 
