@@ -1,1 +1,88 @@
 
+{
+  "routes": [
+    {
+      "id": "EKM-ALV-001",
+      "name": "Ernakulam - Aluva Fast Passenger",
+      "from": "Ernakulam",
+      "to": "Aluva",
+      "departures": ["06:00", "07:30", "09:00", "10:30", "12:00", "13:30", "15:00", "16:30", "18:00", "19:30"],
+      "arrivals": ["06:45", "08:15", "09:45", "11:15", "12:45", "14:15", "15:45", "17:15", "18:45", "20:15"],
+      "frequency": "Every 90 minutes",
+      "type": "Ordinary",
+      "operator": "KSRTC"
+    },
+    {
+      "id": "EKM-TVM-101",
+      "name": "Ernakulam - Trivandrum Superfast",
+      "from": "Ernakulam",
+      "to": "Trivandrum",
+      "departures": ["05:00", "07:00", "09:00", "11:00", "13:00", "15:00", "17:00", "19:00"],
+      "arrivals": ["09:30", "11:30", "13:30", "15:30", "17:30", "19:30", "21:30", "23:30"],
+      "frequency": "Every 2 hours",
+      "type": "Superfast",
+      "operator": "KSRTC"
+    },
+    {
+      "id": "EKM-KTM-201",
+      "name": "Ernakulam - Kothamangalam Express",
+      "from": "Ernakulam",
+      "to": "Kothamangalam",
+      "departures": ["06:15", "08:15", "10:15", "12:15", "14:15", "16:15", "18:15", "20:15"],
+      "arrivals": ["07:45", "09:45", "11:45", "13:45", "15:45", "17:45", "19:45", "21:45"],
+      "frequency": "Every 2 hours",
+      "type": "Express",
+      "operator": "Private"
+    },
+    {
+      "id": "EKM-MVR-301",
+      "name": "Ernakulam - Muvattupuzha Fast Passenger",
+      "from": "Ernakulam",
+      "to": "Muvattupuzha",
+      "departures": ["05:30", "07:00", "08:30", "10:00", "11:30", "13:00", "14:30", "16:00", "17:30", "19:00"],
+      "arrivals": ["06:45", "08:15", "09:45", "11:15", "12:45", "14:15", "15:45", "17:15", "18:45", "20:15"],
+      "frequency": "Every 90 minutes",
+      "type": "Ordinary",
+      "operator": "KSRTC"
+    },
+    {
+      "id": "EKM-KKD-401",
+      "name": "Ernakulam - Kakkanad City Service",
+      "from": "Ernakulam",
+      "to": "Kakkanad",
+      "departures": ["06:00", "06:20", "06:40", "07:00", "07:20", "07:40", "08:00", "08:20", "08:40", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00"],
+      "arrivals": ["06:40", "07:00", "07:20", "07:40", "08:00", "08:20", "08:40", "09:00", "09:20", "09:40", "10:10", "10:40", "11:10", "11:40", "12:10", "12:40", "13:10", "13:40", "14:10", "14:40", "15:10", "15:40", "16:10", "16:40", "17:10", "17:40", "18:10", "18:40", "19:10", "19:40", "20:10", "20:40"],
+      "frequency": "Every 10-30 minutes",
+      "type": "City Service",
+      "operator": "Private"
+    },
+    {
+      "id": "EKM-EDP-501",
+      "name": "Ernakulam - Edappally Circular",
+      "from": "Ernakulam",
+      "to": "Edappally",
+      "departures": ["06:15", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00"],
+      "arrivals": ["06:45", "07:30", "08:30", "09:30", "10:30", "11:30", "12:30", "13:30", "14:30", "15:30", "16:30", "17:30", "18:30", "19:30"],
+      "frequency": "Every 45-60 minutes",
+      "type": "Circular",
+      "operator": "Private"
+    },
+    {
+      "id": "EKM-TRP-601",
+      "name": "Ernakulam - Thripunithura Fast Passenger",
+      "from": "Ernakulam",
+      "to": "Thripunithura",
+      "departures": ["06:00", "06:30", "07:00", "07:30", "08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30"],
+      "arrivals": ["06:25", "06:55", "07:25", "07:55", "08:25", "08:55", "09:25", "09:55", "10:25", "10:55", "11:25", "11:55", "12:25", "12:55", "13:25", "13:55", "14:25", "14:55", "15:25", "15:55", "16:25", "16:55", "17:25", "17:55", "18:25", "18:55", "19:25", "19:55"],
+      "frequency": "Every 30 minutes",
+      "type": "Ordinary",
+      "operator": "Private"
+    }
+  ],
+  "locations": [
+    "Ernakulam", "Aluva", "Kakkanad", "Edappally", "Thripunithura", 
+    "Kalamassery", "North Paravur", "Perumbavoor", "Kothamangalam", 
+    "Muvattupuzha", "Angamaly", "Fort Kochi", "Mattancherry", 
+    "Vytilla", "Palarivattom", "Thrikkakara", "Maradu", "Trivandrum"
+  ]
+}
