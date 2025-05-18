@@ -26,16 +26,7 @@ Visit: *https://bus-timing-app.vercel.app/*
 
 ## 🔐 Firebase Config
 
-```js
-const firebaseConfig = {
-  apiKey: "AIzaSyB0culEMPT0hgjdseF_UZFPjY6TXNo82OA",
-  authDomain: "kannur-bus-app.firebaseapp.com",
-  projectId: "kannur-bus-app",
-  storageBucket: "kannur-bus-app.firebasestorage.app",
-  messagingSenderId: "460426110636",
-  appId: "1:460426110636:web:8ad8d9d1881ffb61dde109"
-};
-```
+
 
 > **Note:** You can update this config in `firebase-config.js`.
 
