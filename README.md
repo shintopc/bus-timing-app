@@ -16,7 +16,7 @@
 
 ## 🌐 Live Demo
 
-Visit: *(Add Vercel link here if deployed)*
+Visit: *https://bus-timing-app.vercel.app/*
 
 ## 🛠️ Tech Stack
 
